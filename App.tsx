@@ -436,8 +436,6 @@ const App: React.FC = () => {
         <p>&copy; {new Date().getFullYear()} Gaganjot Singh. Designed with passion and AI.</p>
       </footer>
 
-      {/* AI Assistant Chatbot */}
-      <Chatbot />
     </div>
   );
 };

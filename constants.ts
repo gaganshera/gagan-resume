@@ -8,7 +8,7 @@ export const RESUME_DATA: ResumeData = {
   email: "gagan.shera@gmail.com",
   phone: "+91-9990831154",
   profileImage: "/profile-pic.jpg",
-  about: "Senior Technical Architect with 13+ years of experience leading large-scale microservices platforms in telecom and energy automation domains. Expert in Node.js, TypeScript, AWS, Docker and Kubernetes. Proven leadership in architecting high-performance, cloud-native systems with a focus on scalability, reliability, performance, and distributed infrastructure using AI tools.",
+  about: "Senior Technical Architect with {years}+ years of experience leading large-scale microservices platforms in telecom and energy automation domains. Expert in Node.js, TypeScript, AWS, Docker and Kubernetes. Proven leadership in architecting high-performance, cloud-native systems with a focus on scalability, reliability, performance, and distributed infrastructure using AI tools.",
   experience: [
     {
       company: "Nagarro India",
@@ -16,7 +16,7 @@ export const RESUME_DATA: ResumeData = {
       period: "2018 - PRESENT",
       highlights: [
         "Leading technology and managing customer journey designs for a global energy automation leader, with deep expertise in large-scale microservices architecture.",
-        "Led architecture and end-to-end development of a 50+ microservices based event-driven orchestrated system powering a global telecom provider.",
+        "Led architecture and end-to-end development of a 100+ microservices based event-driven orchestrated system powering a global telecom provider.",
         "Collaborated cross-functionally with product and client teams, driving performance, scalability, and security enhancements in a cloud-native environment.",
         "Led the development and delivery of a high-volume logistics CRM system for a Hong Kong-based startup, managing a 6-member team."
       ]

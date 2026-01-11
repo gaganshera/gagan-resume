@@ -10,6 +10,11 @@ const App: React.FC = () => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
+  // Calculate years of experience from March 5, 2012
+  const startDate = new Date('2012-03-05');
+  const today = new Date();
+  const yearsOfExperience = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
@@ -145,7 +150,7 @@ const App: React.FC = () => {
               {RESUME_DATA.name}
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed max-w-2xl">
-              Building highly scalable, cloud-native architectures. 13+ years of expertise in 
+              Building highly scalable, cloud-native architectures. {yearsOfExperience}+ years of expertise in 
               <span className="text-white font-medium"> Microservices</span>, 
               <span className="text-white font-medium"> Node.js</span>, and 
               <span className="text-white font-medium"> AI-driven </span> solutions.
@@ -188,23 +193,31 @@ const App: React.FC = () => {
               <span className="w-8 h-[2px] bg-sky-500"></span> About Me
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed max-w-4xl">
-              {RESUME_DATA.about}
+              {RESUME_DATA.about.replace('{years}', yearsOfExperience.toString())}
             </p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <a 
+              href="#experience"
+              onClick={(e) => handleNavClick(e, '#experience')}
+              className="glass p-6 rounded-2xl border border-white/10 hover:bg-slate-800/60 transition-colors cursor-pointer group"
+            >
+              <div className="text-3xl font-bold text-sky-400 mb-1 group-hover:scale-110 transition-transform">{yearsOfExperience}+</div>
+              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold group-hover:text-slate-400 transition-colors">Years Exp</div>
+            </a>
             <div className="glass p-6 rounded-2xl border border-white/10">
-              <div className="text-3xl font-bold text-sky-400 mb-1">13+</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Years Exp</div>
-            </div>
-            <div className="glass p-6 rounded-2xl border border-white/10">
-              <div className="text-3xl font-bold text-indigo-400 mb-1">50+</div>
+              <div className="text-3xl font-bold text-indigo-400 mb-1">100+</div>
               <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Microservices</div>
             </div>
-            <div className="glass p-6 rounded-2xl border border-white/10">
-              <div className="text-3xl font-bold text-sky-400 mb-1">6+</div>
-              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Awards Won</div>
-            </div>
+            <a 
+              href="#awards"
+              onClick={(e) => handleNavClick(e, '#awards')}
+              className="glass p-6 rounded-2xl border border-white/10 hover:bg-slate-800/60 transition-colors cursor-pointer group"
+            >
+              <div className="text-3xl font-bold text-sky-400 mb-1 group-hover:scale-110 transition-transform">{RESUME_DATA.awards.length}+</div>
+              <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold group-hover:text-slate-400 transition-colors">Awards Won</div>
+            </a>
             <div className="glass p-6 rounded-2xl border border-white/10">
               <div className="text-3xl font-bold text-indigo-400 mb-1">AI</div>
               <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold">Expertise</div>

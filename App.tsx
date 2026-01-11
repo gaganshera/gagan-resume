@@ -42,29 +42,35 @@ const App: React.FC = () => {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
-    setFormStatus('submitting');
-
-    // Simulate a professional delay
+    const subject = `Portfolio Inquiry from ${formState.name}`;
+    const plainBody = 
+      `Hi Gagan,\n\nYou have received a new message from your portfolio website:\n\n` +
+      `Name: ${formState.name}\n` +
+      `Email: ${formState.email}\n\n` +
+      `Message:\n${formState.message}\n\n` +
+      `---\nSent from Gaganjot Singh Portfolio`;
+    
+    // Try to copy to clipboard as fallback for desktop
+    const emailDetails = `To: ${RESUME_DATA.email}\nSubject: ${subject}\n\n${plainBody}`;
+    
+    try {
+      await navigator.clipboard.writeText(emailDetails);
+    } catch (err) {
+      console.log('Clipboard not available');
+    }
+    
+    // Open the user's mail client immediately
+    const mailtoLink = `mailto:${RESUME_DATA.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(plainBody)}`;
+    window.location.href = mailtoLink;
+    
+    // Show success message after opening email
     setTimeout(() => {
       setFormStatus('success');
-      
-      // Construct the mailto link
-      const subject = encodeURIComponent(`Portfolio Inquiry from ${formState.name}`);
-      const body = encodeURIComponent(
-        `Hi Gagan,\n\nYou have received a new message from your portfolio website:\n\n` +
-        `Name: ${formState.name}\n` +
-        `Email: ${formState.email}\n\n` +
-        `Message:\n${formState.message}\n\n` +
-        `---\nSent from Gaganjot Singh Portfolio`
-      );
-      
-      // Open the user's mail client
-      window.location.href = `mailto:${RESUME_DATA.email}?subject=${subject}&body=${body}`;
-    }, 1500);
+    }, 500);
   };
 
   return (
@@ -324,25 +330,25 @@ const App: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="glass p-10 rounded-3xl border border-white/10 space-y-8 h-fit">
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-sky-500/10 rounded-2xl flex items-center justify-center text-sky-500">
+              <a href={`tel:${RESUME_DATA.phone}`} className="flex items-center gap-6 hover:bg-white/5 p-2 rounded-xl transition-colors group">
+                <div className="w-12 h-12 bg-sky-500/10 rounded-2xl flex items-center justify-center text-sky-500 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-medium">Phone</div>
-                  <div className="text-white font-bold">{RESUME_DATA.phone}</div>
+                  <div className="text-white font-bold group-hover:text-sky-400 transition-colors">{RESUME_DATA.phone}</div>
                 </div>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center text-indigo-500">
+              </a>
+              <a href={`mailto:${RESUME_DATA.email}`} className="flex items-center gap-6 hover:bg-white/5 p-2 rounded-xl transition-colors group">
+                <div className="w-12 h-12 bg-indigo-500/10 rounded-2xl flex items-center justify-center text-indigo-500 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-medium">Email</div>
-                  <div className="text-white font-bold">{RESUME_DATA.email}</div>
+                  <div className="text-white font-bold group-hover:text-indigo-400 transition-colors">{RESUME_DATA.email}</div>
                 </div>
-              </div>
-              <div className="flex items-center gap-6">
+              </a>
+              <div className="flex items-center gap-6 p-2">
                 <div className="w-12 h-12 bg-sky-500/10 rounded-2xl flex items-center justify-center text-sky-500">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
@@ -361,7 +367,7 @@ const App: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white">Message Ready!</h3>
                   <p className="text-slate-400 max-w-xs">
-                    Your email client should have opened. If not, please check your background apps to finalize sending.
+                    Your email client should have opened. If not, the message details have been copied to your clipboard - just paste into your email app and send to <span className="text-sky-400">{RESUME_DATA.email}</span>
                   </p>
                   <button 
                     onClick={() => {

@@ -57,11 +57,11 @@ export const RESUME_DATA: ResumeData = {
   skills: [
     {
       category: "Programming Languages",
-      skills: ["Node.js", "TypeScript", "JavaScript"]
+      skills: ["Node.js", "TypeScript", "JavaScript", "Python"]
     },
     {
       category: "Frameworks & Tools",
-      skills: ["Express.js", "Nest.js", "Fastify", "Docker", "K8s", "AWS", "Camunda BPM", "GCP", "Jenkins", "Openshift", "Prometheus", "New Relic", "n8n", "Dynatrace", "SonarQube"]
+      skills: ["Express.js", "Nest.js", "Fastify", "Docker", "K8s", "AWS", "Camunda BPM", "GCP", "Jenkins", "Openshift", "Prometheus", "New Relic", "n8n", "Agentic AI", "LangChain", "Dynatrace", "SonarQube", "MCP"]
     },
     {
       category: "API & Middleware",

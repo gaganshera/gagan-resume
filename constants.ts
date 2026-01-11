@@ -7,7 +7,7 @@ export const RESUME_DATA: ResumeData = {
   location: "New Delhi, India",
   email: "gagan.shera@gmail.com",
   phone: "+91-9990831154",
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=400&h=400&q=80",
+  profileImage: "/profile-pic.jpg",
   about: "Senior Technical Architect with 13+ years of experience leading large-scale microservices platforms in telecom and energy automation domains. Expert in Node.js, TypeScript, AWS, Docker and Kubernetes. Proven leadership in architecting high-performance, cloud-native systems with a focus on scalability, reliability, performance, and distributed infrastructure using AI tools.",
   experience: [
     {

@@ -164,11 +164,13 @@ const App: React.FC = () => {
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
             <div className="relative p-1 bg-gradient-to-tr from-sky-500 to-indigo-500 rounded-full shadow-2xl">
-              <img 
-                src={RESUME_DATA.profileImage} 
-                alt={RESUME_DATA.name} 
-                className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-slate-900 object-cover"
-              />
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-slate-900 overflow-hidden">
+                <img 
+                  src={RESUME_DATA.profileImage} 
+                  alt={RESUME_DATA.name} 
+                  className="w-full h-full object-cover scale-125"
+                />
+              </div>
             </div>
           </div>
         </section>

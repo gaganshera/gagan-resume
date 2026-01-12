@@ -215,7 +215,7 @@ const App: React.FC = () => {
               onClick={(e) => handleNavClick(e, '#awards')}
               className="glass p-6 rounded-2xl border border-white/10 hover:bg-slate-800/60 transition-colors cursor-pointer group"
             >
-              <div className="text-3xl font-bold text-sky-400 mb-1 group-hover:scale-110 transition-transform">{RESUME_DATA.awards.length}+</div>
+              <div className="text-3xl font-bold text-sky-400 mb-1 group-hover:scale-110 transition-transform">10+</div>
               <div className="text-sm text-slate-500 uppercase tracking-widest font-semibold group-hover:text-slate-400 transition-colors">Awards Won</div>
             </a>
             <div className="glass p-6 rounded-2xl border border-white/10">
